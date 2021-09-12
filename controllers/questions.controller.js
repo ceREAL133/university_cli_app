@@ -17,11 +17,12 @@ module.exports = {
 
         res.json(employees)
     },
+    
     getEmployeeById: (req, res) => {
-        const {employee} = req;
-
+        const { employee } = req;
         res.json(employee);
     },
+
     createEmployee: async (req, res, next) => {
         try {
           const createdEmployee = await Employee.create(req.body);

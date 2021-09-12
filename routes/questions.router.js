@@ -1,10 +1,11 @@
 const router = require('express').Router()
 
 const { questionsController } = require('../controllers')
+const { questionMiddleware } = require('../middlewares')
 
 router.get('/', questionsController.getAllQuestions)
 router.get('/employee', questionsController.getAllEmployees)
-router.get('/employee/:id', questionsController.getEmployeeById)
+router.get('/employee/:id', questionMiddleware.checkIsEmployeePresent, questionsController.getEmployeeById)
 router.post('/employee', questionsController.createEmployee)
 
 module.exports = router;
