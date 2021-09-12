@@ -1,0 +1,1 @@
+module.exports.questionsRouter = require('./questions.router');

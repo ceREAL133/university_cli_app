@@ -1,0 +1,1 @@
+module.exports.questionsController = require('./questions.controller');
