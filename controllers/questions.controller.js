@@ -20,6 +20,9 @@ module.exports = {
     
     getEmployeeById: (req, res) => {
         const { employee } = req;
+
+        console.log(employee);
+        
         res.json(employee);
     },
 

@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const { questions } = require('./constants');
 const mongoose = require('mongoose');
 
 const { questionsRouter } = require('./routes')

@@ -2,14 +2,20 @@ const { Employee } = require('../database');
 
 module.exports = {
   checkIsEmployeePresent: async (req, res, next) => {
-  
-    const { id } = req.params;
+    try {
+      const { employeeId } = req.params;
 
-    if(id){
-      next()
-    } else{
-      res.error(404)
+      const employeeById = await Employee.findById(employeeId);
+
+      if (!employeeById) {
+        throw new Error('user not found');
+      }
+
+      req.employee = employeeById;
+
+      next();
+    } catch (e) {
+      next(e);
     }
-
   }
 }
