@@ -12,19 +12,6 @@ module.exports = {
 
         res.send(arr);
     },
-    getAllEmployees: async (req, res) => {
-        const employees = await Employee.find({});
-
-        res.json(employees)
-    },
-    
-    getEmployeeById: (req, res) => {
-        const { employee } = req;
-
-        console.log(employee);
-        
-        res.json(employee);
-    },
 
     createEmployee: async (req, res, next) => {
         try {
@@ -35,4 +22,23 @@ module.exports = {
           next(e);
         }
     },
+
+    getAllEmployees: async (req, res) => {
+        const employees = await Employee.find({});
+
+        res.json(employees)
+    },
+    
+    getEmployeeById: (req, res) => {
+        const { employee } = req;
+        
+        res.json(employee);
+    },
+
+
+    getHeadOfDept: (req, res) => {
+        const { headOfDept } = req;
+
+        res.json(`the head of ${req.params.dept} department is ${headOfDept.lectorName}`);
+    }
 }

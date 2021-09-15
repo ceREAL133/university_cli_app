@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 app.use('/', questionsRouter);
 app.use('/employee', questionsRouter)
-// app.use('/headOfDept/:dept', );
 
 app.use('*', _notFoundHandler);
 app.use(_handleErrors);

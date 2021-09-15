@@ -1,5 +1,5 @@
 module.exports = {
-    MATH: 'Math',
-    ENGLISH: 'English',
-    PROGRAMMING: 'Programming'
+    MATH: 'math',
+    ENGLISH: 'english',
+    PROGRAMMING: 'programming'
 }
