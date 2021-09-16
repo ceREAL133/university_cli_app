@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 
-const { employeeRouter } = require('./routes')
+const { employeeRouter, questionsRouter } = require('./routes')
 
 const app = express();
 
@@ -13,17 +13,24 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.use('/', employeeRouter);
+app.use('/questions', questionsRouter);
 app.use('/employee', employeeRouter)
 
 app.use('*', _notFoundHandler);
 app.use(_handleErrors);
 
+app.get('/headOfDept', (req, res) => {
+  req.query.dept1 === 'math'  // true
+  req.query.dept2 === 'english'  // true
+
+  res.json('done')
+})
 
 
 app.listen(3000, () => {
     console.log('app listen 3000');
 }) 
+
 
 function _mongooseConnector() {
     mongoose.connect('mongodb://localhost:27017/university', { useNewUrlParser: true, useUnifiedTopology: true });

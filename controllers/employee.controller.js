@@ -3,16 +3,6 @@ const { questions, responseCodesEnum } = require('../constants');
 
 
 module.exports = {
-    getAllQuestions: async (req, res) => {
-        let arr = []
-        
-        await questions.forEach(question => {
-            arr.push(question)
-        });
-
-        res.send(arr);
-    },
-
     createEmployee: async (req, res, next) => {
         try {
           const createdEmployee = await Employee.create(req.body);
