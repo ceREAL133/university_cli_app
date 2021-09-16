@@ -1,1 +1,1 @@
-module.exports.questionsController = require('./questions.controller');
+module.exports.employeeController = require('./employee.controller');

@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 
-const { questionsRouter } = require('./routes')
+const { employeeRouter } = require('./routes')
 
 const app = express();
 
@@ -13,11 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.use('/', questionsRouter);
-app.use('/employee', questionsRouter)
+app.use('/', employeeRouter);
+app.use('/employee', employeeRouter)
 
 app.use('*', _notFoundHandler);
 app.use(_handleErrors);
+
+
 
 app.listen(3000, () => {
     console.log('app listen 3000');

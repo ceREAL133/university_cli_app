@@ -1,1 +1,1 @@
-module.exports.questionMiddleware = require('./question.middleware')
+module.exports.employeeMiddleware = require('./employee.middleware')
