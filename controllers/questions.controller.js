@@ -1,5 +1,5 @@
 const { Employee } = require('../database');
-const { questions, responseCodesEnum, employeeRoles } = require('../constants');
+const { questions, responseCodesEnum, employeeRoles, employeeDegrees } = require('../constants');
 
 
 module.exports = {
@@ -24,5 +24,31 @@ module.exports = {
         } catch (e) {
             next(e);
         }
+    },
+
+    showDeptStat: async (req, res, next) => {
+        const dept = req.query.dept
+        let assistantsArr = [];
+        let professorsArr = [];
+        let asociateProfessorsArr = [];
+
+        try {
+            const deptWorkersArr = await Employee.find({department: dept})
+           
+            deptWorkersArr.forEach((worker) => {
+                if (worker.degree === employeeDegrees.PROFESSOR) {
+                    professorsArr.push(worker.lectorName);
+                } else if (worker.degree === employeeDegrees.ASSOCIATE_PROFESSOR){
+                    asociateProfessorsArr.push(worker.lectorName);
+                } else if (worker.degree === employeeDegrees.ASSISTANT){
+                    assistantsArr.push(worker.lectorName);
+                }
+            })
+            
+            res.json(`assistants- ${assistantsArr.length} professors- ${professorsArr.length} asociateProfessors- ${asociateProfessorsArr.length}`);
+        } catch (e) {
+            next(e)
+        }
+
     }
 }
