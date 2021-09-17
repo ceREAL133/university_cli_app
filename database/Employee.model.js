@@ -8,15 +8,24 @@ const employeeSchema = new Schema({
   },
   degree: {
     type: String,
-    enum: Object.values(employeeDegrees)
+    enum: Object.values(employeeDegrees),
+    required: true
   },
   department: {
     type: String,
-    enum: Object.values(deptNames)
+    enum: Object.values(deptNames),
+    required: true
   },
   departmentRole: {
     type: String,
-    enum: Object.values(employeeRoles)
+    enum: Object.values(employeeRoles),
+    required: true
+  },
+  salary: {
+    type: Number,
+    min: 100,
+    max: 3000,
+    required: true
   },
 }, { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } });
 

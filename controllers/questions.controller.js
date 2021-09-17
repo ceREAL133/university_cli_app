@@ -44,11 +44,26 @@ module.exports = {
                     assistantsArr.push(worker.lectorName);
                 }
             })
-            
+
             res.json(`assistants- ${assistantsArr.length} professors- ${professorsArr.length} asociateProfessors- ${asociateProfessorsArr.length}`);
         } catch (e) {
             next(e)
         }
 
+    },
+    showAvgSalary: async (req, res, next) => {
+        const dept = req.query.dept
+        let sumSalary = 0;
+        try {
+            const deptWorkersArr = await Employee.find({department: dept})
+            deptWorkersArr.forEach((worker)=>{
+                sumSalary += worker.salary
+            })
+            let avgSalary = sumSalary/deptWorkersArr.length;
+
+            res.json(`avarage salary for ${dept} department is $${avgSalary}`)
+        } catch (e) {
+            next(e)
+        }
     }
 }
