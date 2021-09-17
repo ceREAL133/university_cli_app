@@ -4,9 +4,7 @@ const { employeeController } = require('../controllers')
 const { employeeMiddleware } = require('../middlewares')
 
 router.get('/', employeeController.getAllEmployees)
-router.get('/employee/:employeeId', employeeMiddleware.checkIsEmployeePresent, employeeController.getEmployeeById)
-router.post('/employee', employeeController.createEmployee)
-
-// router.get('/employee/headOfDept/:dept', employeeMiddleware.checkWhoIsTheDeptHead, employeeController.getHeadOfDept)
+router.get('/:employeeId', employeeMiddleware.checkIsEmployeePresent, employeeController.getEmployeeById)
+router.post('/', employeeController.createEmployee)
 
 module.exports = router;

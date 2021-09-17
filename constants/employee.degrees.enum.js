@@ -1,5 +1,5 @@
 module.exports = {
-    ASSISTANT: 'Assistant', 
-    ASSOCIATE_PROFESSOR: 'Associate professor', 
-    PROFESSOR: 'Professor'
+    ASSISTANT: 'assistant', 
+    ASSOCIATE_PROFESSOR: 'associate professor', 
+    PROFESSOR: 'professor'
 }

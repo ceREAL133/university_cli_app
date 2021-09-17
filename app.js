@@ -19,14 +19,6 @@ app.use('/employee', employeeRouter)
 app.use('*', _notFoundHandler);
 app.use(_handleErrors);
 
-app.get('/headOfDept', (req, res) => {
-  req.query.dept1 === 'math'  // true
-  req.query.dept2 === 'english'  // true
-
-  res.json('done')
-})
-
-
 app.listen(3000, () => {
     console.log('app listen 3000');
 }) 

@@ -1,4 +1,4 @@
 module.exports = {
-    HEAD: 'Head',
-    WORKER: 'Worker',
+    HEAD: 'head',
+    WORKER: 'worker',
 }
