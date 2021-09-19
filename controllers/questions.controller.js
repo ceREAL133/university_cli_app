@@ -27,13 +27,13 @@ module.exports = {
     },
 
     showDeptStat: async (req, res, next) => {
-        const dept = req.query.dept
+        const dept = req.query.dept;
         let assistantsArr = [];
         let professorsArr = [];
         let asociateProfessorsArr = [];
 
         try {
-            const deptWorkersArr = await Employee.find({department: dept})
+            const deptWorkersArr = await Employee.find({department: dept});
            
             deptWorkersArr.forEach((worker) => {
                 if (worker.degree === employeeDegrees.PROFESSOR) {
@@ -52,10 +52,10 @@ module.exports = {
 
     },
     showAvgSalary: async (req, res, next) => {
-        const dept = req.query.dept
+        const dept = req.query.dept;
         let sumSalary = 0;
         try {
-            const deptWorkersArr = await Employee.find({department: dept})
+            const deptWorkersArr = await Employee.find({department: dept});
             deptWorkersArr.forEach((worker)=>{
                 sumSalary += worker.salary
             })
@@ -65,5 +65,21 @@ module.exports = {
         } catch (e) {
             next(e)
         }
-    }
+    },
+
+    showCountOfEmployee: async (req, res, next) => {
+        const dept = req.query.dept;
+
+        try{
+            const deptWorkersArr = await Employee.find({department: dept});
+
+            res.json(`There are ${deptWorkersArr.length} employee in ${dept} department`)
+        } catch (e) {
+            next(e)
+        }
+    },
+
+    // findByGlobalSearchTemplate: async (req, res, next) => {
+
+    // }
 }
