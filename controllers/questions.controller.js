@@ -82,8 +82,12 @@ module.exports = {
     findByGlobalSearchTemplate: async (req, res, next) => {
         const template = req.query.template;
 
-        Employee.search(template, function(err, data) {
-            res.json(data);
+        Employee.search(template, (err, data)=> {
+            if(data.length !== 0){
+                res.json(data)
+            } else{
+                res.json("no coincidence")
+            }
         })
     }
 }
