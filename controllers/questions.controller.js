@@ -79,7 +79,11 @@ module.exports = {
         }
     },
 
-    // findByGlobalSearchTemplate: async (req, res, next) => {
+    findByGlobalSearchTemplate: async (req, res, next) => {
+        const template = req.query.template;
 
-    // }
+        Employee.search(template, function(err, data) {
+            res.json(data);
+        })
+    }
 }
