@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const { employeeRouter, questionsRouter } = require('./routes')
-
+const { Option } = require('./inquirerQuestion')
 const app = express();
 
 _mongooseConnector();
@@ -12,6 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'static')));
+
+/////////////TODO///////////////////////////////
+//робити функції для інкваєра по типу функцій контррллера, і запихувати їх в роутер
+///////////////////////////////////////////////
+
+Option.chooseOption();
 
 app.use('/questions', questionsRouter);
 app.use('/employee', employeeRouter)
