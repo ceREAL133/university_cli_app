@@ -26,7 +26,7 @@ app.use(_handleErrors);
 app.listen(3000, () => {
     console.log('app listen 3000');
     Option.chooseOption();
-    app.use('/', Option.chooseOption())
+    // app.use('/', Option.chooseOption())
 }) 
 
 

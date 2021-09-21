@@ -28,21 +28,21 @@ const options = [
 
 module.exports = {
     chooseOption: async (req, res, next) => {
-        await inquirer.prompt(options).then((answer) => {
-            //  if (answer.department == "math") {
-            //      console.log('hooray');
-            //  }
-            userChoise = JSON.parse(JSON.stringify(answer, null, '  '));
-        });
-        console.log(userChoise);
-        console.log(userChoise.department);
+        // await inquirer.prompt(options).then((answer) => {
+        //     //  if (answer.department == "math") {
+        //     //      console.log('hooray');
+        //     //  }
+        //     userChoise = JSON.parse(JSON.stringify(answer, null, '  '));
+        // });
+        // console.log(userChoise);
+        // console.log(userChoise.department);
 
-        questions.forEach((question)=>{
-            // console.log(Object.values(question).toString());
-            if (Object.values(question).toString()===userChoise.option) {
-                res.redirect("http://localhost:3000/employee")
-            }
-        })
+        // questions.forEach((question)=>{
+        //     // console.log(Object.values(question).toString());
+        //     if (Object.values(question).toString()===userChoise.option) {
+        //         res.redirect("http://localhost:3000/employee")
+        //     }
+        // })
     }
     
 }

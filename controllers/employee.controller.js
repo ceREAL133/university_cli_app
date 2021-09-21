@@ -27,7 +27,7 @@ module.exports = {
     
     getEmployeeById: async (req, res, next) => {
         try {
-            const { employeeId } = req.params
+            const employeeId = req.query.id
             const employeeById = await Employee.findById(employeeId);
 
             res.json(employeeById)
