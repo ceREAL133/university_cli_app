@@ -17,8 +17,6 @@ app.use(express.static(path.join(__dirname, 'static')));
 //робити функції для інкваєра по типу функцій контррллера, і запихувати їх в роутер
 ///////////////////////////////////////////////
 
-Option.chooseOption();
-
 app.use('/questions', questionsRouter);
 app.use('/employee', employeeRouter)
 
@@ -27,6 +25,8 @@ app.use(_handleErrors);
 
 app.listen(3000, () => {
     console.log('app listen 3000');
+    Option.chooseOption();
+    app.use('/', Option.chooseOption())
 }) 
 
 
