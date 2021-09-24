@@ -29,13 +29,11 @@ module.exports = {
     chooseOptionAndGetResponse: async (req, res, next) => {
         inquirer.prompt(options)
         .then((answer)=>{
-            console.log(answer);
             queryTemplate = answer.template;
 
             questions.forEach(question => {
                 if (Object.values(question).toString() === answer.option) {
                     queryOption = Object.keys(question).toString()
-                    console.log(queryOption);
                 }
             }),
             axios.get(`http://localhost:3000/questions/${queryOption}?template=${queryTemplate}`)
