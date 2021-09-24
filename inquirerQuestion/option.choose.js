@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { questions, deptNames } = require('../constants');
+const { questions, constant } = require('../constants');
 const axios = require('axios');
 
 let questionsArray = []; 
@@ -36,7 +36,7 @@ module.exports = {
                     queryOption = Object.keys(question).toString()
                 }
             }),
-            axios.get(`http://localhost:3000/questions/${queryOption}?template=${queryTemplate}`)
+            axios.get(`${constant.HOST_QUESTIONS}/${queryOption}?template=${queryTemplate}`)
             .then((response) => console.log(response.data))
         });
         
