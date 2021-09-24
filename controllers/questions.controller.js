@@ -15,7 +15,7 @@ module.exports = {
 
     getHeadOfDept: async (req, res, next) => {
         try {
-            const headOfDept = await Employee.findOne({department: req.query.dept, departmentRole: employeeRoles.HEAD});
+            const headOfDept = await Employee.findOne({department: req.query.template, departmentRole: employeeRoles.HEAD});
             if (!headOfDept) {
                 throw new Error('there are no head of dept')             
             }
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     showDeptStat: async (req, res, next) => {
-        const dept = req.query.dept;
+        const dept = req.query.template;
         let assistantsArr = [];
         let professorsArr = [];
         let asociateProfessorsArr = [];
@@ -52,7 +52,7 @@ module.exports = {
 
     },
     showAvgSalary: async (req, res, next) => {
-        const dept = req.query.dept;
+        const dept = req.query.template;
         let sumSalary = 0;
         try {
             const deptWorkersArr = await Employee.find({department: dept});
@@ -68,7 +68,7 @@ module.exports = {
     },
 
     showCountOfEmployee: async (req, res, next) => {
-        const dept = req.query.dept;
+        const dept = req.query.template;
 
         try{
             const deptWorkersArr = await Employee.find({department: dept});

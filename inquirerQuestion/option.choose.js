@@ -17,21 +17,20 @@ const options = [
         choices: questionsArray.flat()                        
     },
     {
-        type: 'rawlist',
-        name: 'department',
-        message: 'choose department',
-        choices: Object.values(deptNames),
+        type: 'input',
+        name: 'template',
+        message: 'Enter department or template (for last question)',
     },
 ];
 
 let queryOption = null;
-let queryDept = null;
+let queryTemplate = null;
 module.exports = {
     chooseOptionAndGetResponse: async (req, res, next) => {
         inquirer.prompt(options)
         .then((answer)=>{
             console.log(answer);
-            queryDept = answer.department;
+            queryTemplate = answer.template;
 
             questions.forEach(question => {
                 if (Object.values(question).toString() === answer.option) {
@@ -39,7 +38,7 @@ module.exports = {
                     console.log(queryOption);
                 }
             }),
-            axios.get(`http://localhost:3000/questions/${queryOption}?dept=${queryDept}`)
+            axios.get(`http://localhost:3000/questions/${queryOption}?template=${queryTemplate}`)
             .then((response) => console.log(response.data))
         });
         

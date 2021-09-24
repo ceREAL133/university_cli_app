@@ -5,7 +5,7 @@ module.exports = {
   checkHeadOfDept: async (req, res, next) => {
     const deptNamesArr = Object.values(deptNames);
 
-    if (!deptNamesArr.includes(req.query.dept)){
+    if (!deptNamesArr.includes(req.query.template)){
       res.json('there are no dept like this')
       return
     } else{
@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   checkIsDepartmentExist: async (req, res, next) => {
-    const deptName = req.query.dept;
+    const deptName = req.query.template;
 
     const deptNamesArr = await Object.values(deptNames);
 
