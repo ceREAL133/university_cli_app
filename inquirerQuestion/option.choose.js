@@ -1,15 +1,13 @@
 const inquirer = require('inquirer');
-const { questions, deptNames } = require('../constants')
+const { questions, deptNames } = require('../constants');
+const axios = require('axios');
 
-let questionsArray = [] 
+let questionsArray = []; 
 
 questions.forEach((question)=>{
     questionsArray.push(Object.values(question));
 })
 
-
-
-let userChoise = null;
 
 const options = [
     {
@@ -24,26 +22,26 @@ const options = [
         message: 'choose department',
         choices: Object.values(deptNames),
     },
-]
+];
 
+let queryOption = null;
+let queryDept = null;
 module.exports = {
-    chooseOption: async (req, res, next) => {
-        // await inquirer.prompt(options).then((answer) => {
-        //     //  if (answer.department == "math") {
-        //     //      console.log('hooray');
-        //     //  }
-        //     userChoise = JSON.parse(JSON.stringify(answer, null, '  '));
-        // });
-        // console.log(userChoise);
-        // console.log(userChoise.department);
+    chooseOptionAndGetResponse: async (req, res, next) => {
+        inquirer.prompt(options)
+        .then((answer)=>{
+            console.log(answer);
+            queryDept = answer.department;
 
-        // questions.forEach((question)=>{
-        //     // console.log(Object.values(question).toString());
-        //     if (Object.values(question).toString()===userChoise.option) {
-        //         res.redirect("http://localhost:3000/employee")
-        //     }
-        // })
-    }
-    
+            questions.forEach(question => {
+                if (Object.values(question).toString() === answer.option) {
+                    queryOption = Object.keys(question).toString()
+                    console.log(queryOption);
+                }
+            }),
+            axios.get(`http://localhost:3000/questions/${queryOption}?dept=${queryDept}`)
+            .then((response) => console.log(response.data))
+        });
+        
+    },
 }
-

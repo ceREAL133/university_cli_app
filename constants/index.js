@@ -1,3 +1,4 @@
+module.exports.constant = require('./constant')
 module.exports.databaseTablesEnum = require('./database-tables.enum')
 module.exports.deptNames = require('./dept.names.enum')
 module.exports.employeeDegrees = require('./employee.degrees.enum')
