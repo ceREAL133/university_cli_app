@@ -24,19 +24,19 @@ const options = [
 ];
 
 let queryOption = null;
-let queryTemplate = null;
+
 module.exports = {
     chooseOptionAndGetResponse: async (req, res, next) => {
         inquirer.prompt(options)
-        .then((answer)=>{
-            queryTemplate = answer.template;
+        .then((answer) => {
 
-            questions.forEach(question => {
-                if (Object.values(question).toString() === answer.option) {
+            questions.forEach(question => {                                          ///////rewrite using find()
+                if (Object.values(question).toString() === answer.option) {             
                     queryOption = Object.keys(question).toString()
                 }
             }),
-            axios.get(`${constant.HOST_QUESTIONS}/${queryOption}?template=${queryTemplate}`)
+            
+            axios.get(`${constant.HOST_QUESTIONS}/${queryOption}?template=${answer.template}`)
             .then((response) => console.log(response.data))
         });
         
